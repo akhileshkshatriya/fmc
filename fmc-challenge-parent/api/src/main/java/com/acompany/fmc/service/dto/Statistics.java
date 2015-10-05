@@ -7,7 +7,6 @@ public class Statistics {
 
 	private Character hero;
 
-
 	private Character villain;
 
 	public static void main(String[] args) {

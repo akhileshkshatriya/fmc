@@ -17,7 +17,7 @@ public class CharacterController {
 	public Model createCharacter(Model model){
 		Character character = (Character) model.getAttribute("hero");
 		characterService.createHero(character);
-		model.addAttribute("view", "start.options");
+		model.redirectTo("start.options");
 		return model;
 	}
 }

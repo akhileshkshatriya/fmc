@@ -19,27 +19,27 @@ public class GameController {
 
 	@RequetMapping(name = "home")
 	public Model welcome(Model model) {
-		Model returnModel = new Model();
+		model = new Model();
 
 		if (gameService.isThereAnySavedGame()) {
-			returnModel.addAttribute("resumeoption", "true");
+			model.addAttribute("resumeoption", "true");
 		}
 
-		returnModel.addAttribute("view", "welcome");
-		return returnModel;
+		model.redirectTo("welcome");
+		return model;
 	}
 
 	@RequetMapping(name = "initializeNewGame")
 	public Model initializeNewGame(Model model) {
-		Model retModel = new Model();
+		model = new Model();
 		Character hero = characterService.getHero();
 		if (hero == null) {
-			retModel.addAttribute("view", "create.character");
+			model.redirectTo("create.character");
 		} else {
-			retModel.addAttribute("view", "start.options");
-			return retModel;
+			model.redirectTo("start.options");
+			return model;
 		}
 
-		return retModel;
+		return model;
 	}
 }

@@ -29,7 +29,7 @@ public class Level1Controller {
 		statistics.setVillain(villain);
 		model.addAttribute("statistics", statistics);
 
-		model.addAttribute("view", "level1.start");
+		model.redirectTo("level1.start");
 		return model;
 	}
 
@@ -49,21 +49,21 @@ public class Level1Controller {
 		if (heroHealth > 0 && villainHealth > 0) {
 			hero = characterService.updateHeroHealth(heroHealth);
 			villain = characterService.updateVillainHealth(villainHealth);
-			model.addAttribute("view", "level1.start");
+			model.redirectTo("level1.start");
 		} else {
 			characterService.increaseHeroExperience();
 			if (heroHealth <= 0) {
 				if (villainHealth <= 0) {
 					if (Math.signum((heroHealth) - (villainDamage)) > 0) {
-						model.addAttribute("view", "hero.won");
+						model.redirectTo("hero.won");
 					} else {
-						model.addAttribute("view", "hero.lose");
+						model.redirectTo("hero.lose");
 					}
 				} else {
-					model.addAttribute("view", "hero.lose");
+					model.redirectTo("hero.lose");
 				}
 			} else {
-				model.addAttribute("view", "hero.won");
+				model.redirectTo("hero.won");
 			}
 		}
 

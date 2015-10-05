@@ -29,7 +29,7 @@ public class Dispatcher {
 		Object targetController = context.getBean(controllerMethod.getDeclaringClass());
 		Model retModel = (Model) controllerMethod.invoke(targetController, model);
 
-		Method viewMethod = resolver.get((String) retModel.getAttribute(VIEW_NAME));
+		Method viewMethod = resolver.get((String) retModel.getRedirectTo());
 		Object targetView = context.getBean(viewMethod.getDeclaringClass());
 		viewMethod.invoke(targetView, retModel);
 
