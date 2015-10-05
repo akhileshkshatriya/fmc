@@ -13,6 +13,7 @@ public interface CharacterService {
 	boolean createVillain();
 	Character getVillain();
 	Character updateVillainHealth(int health);
+	boolean increaseHeroExperience();
 	
 	
 }

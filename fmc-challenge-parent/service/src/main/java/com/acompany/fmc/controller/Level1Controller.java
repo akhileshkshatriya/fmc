@@ -50,22 +50,21 @@ public class Level1Controller {
 			hero = characterService.updateHeroHealth(heroHealth);
 			villain = characterService.updateVillainHealth(villainHealth);
 			model.addAttribute("view", "level1.start");
-		} else if (heroHealth <= 0) {
-			if (villainHealth <= 0) {
-				if (Math.signum((heroHealth) - (villainDamage)) > 0) {
-					// hero Won
-					model.addAttribute("view", "hero.won");
+		} else {
+			characterService.increaseHeroExperience();
+			if (heroHealth <= 0) {
+				if (villainHealth <= 0) {
+					if (Math.signum((heroHealth) - (villainDamage)) > 0) {
+						model.addAttribute("view", "hero.won");
+					} else {
+						model.addAttribute("view", "hero.lose");
+					}
 				} else {
-					// Villain Won
 					model.addAttribute("view", "hero.lose");
 				}
 			} else {
-				model.addAttribute("view", "hero.lose");
-				// Villain Won
+				model.addAttribute("view", "hero.won");
 			}
-		} else {
-			model.addAttribute("view", "hero.won");
-			// Hero won
 		}
 
 		Statistics statistics = new Statistics();

@@ -16,7 +16,10 @@ public class FinishView {
 		ViewUtil.displayConsoleTextIn(ViewUtil.ANSI_BLUE);
 		System.out.println(statistics);
 		ViewUtil.resetConsoleText();
-		System.out.println("Congratulations.....You Win");
+		System.out.println("Yipeeeee... I WON !!");
+		System.out.println("Yipeeeee... I FOUND MY CAR");
+		System.out.println("I taught a lesson to TheVillain");
+		System.exit(0);
 	}
 
 	@ViewMapping(name = "hero.lose")
@@ -28,6 +31,9 @@ public class FinishView {
 		System.out.println(statistics);
 		ViewUtil.resetConsoleText();
 		
-		System.out.println("You Lose, Try Again");
+		System.out.println("Oops.... TheVillain has crushed my car");
+		System.out.println("Now I will go and buy a second hand Car from www.acompany.com");
+		System.out.println();
+		System.exit(0);
 	}
 }

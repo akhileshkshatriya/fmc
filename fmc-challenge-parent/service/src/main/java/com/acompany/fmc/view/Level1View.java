@@ -14,6 +14,10 @@ public class Level1View {
 	@ViewMapping(name = "level1.start")
 	public void displayLevel1Options(Model model) {
 		
+		System.out.print("I am ready to fight now...");
+		System.out.print("My and TheVillains comparison.");
+		System.out.println();
+		
 		Statistics statistics = (Statistics)model.getAttribute("statistics");
 		
 		ViewUtil.displayConsoleTextIn(ViewUtil.ANSI_BLUE);
@@ -22,7 +26,8 @@ public class Level1View {
 		
 		System.out.print("[1] Fight \n");
 		System.out.print("[2] Buy Second Hand Car \n");
-		System.out.print("[3] Exit");
+		System.out.print("[3] Save Game \n");
+		System.out.print("[4] Exit");
 		System.out.println();
 		System.out.println();
 		Scanner scanner = new Scanner(System.in);
@@ -38,6 +43,9 @@ public class Level1View {
 				displaySecondHandCarSite(model);
 				break;
 			case 3:
+				RequestSubmitter.submitRequest("saveGame", new Model());
+				break;
+			case 4:
 				System.exit(0);
 				break;
 			default:

@@ -13,8 +13,10 @@ public class StartGameView {
 	@ViewMapping(name="start.options")
 	public void displayStartOptions(Model model){
 		
-		System.out.println("So you have decided to bring your car back, Awesome");
-		System.out.println("Good Luck !!");
+		System.out.println("I have found out that my Car has been stolen by TheVillain");
+		System.out.println("and he is very powerfull....");
+		System.out.println("I can either chose to start the mission or forget about my car");
+		
 		System.out.println();
 		System.out.println("Please Select...");
 		System.out.print("[1] Start \n");
@@ -30,7 +32,6 @@ public class StartGameView {
 			switch (userInput) {
 
 			case 1:
-				System.out.println("Inside");
 				RequestSubmitter.submitRequest("initializeLavel1", new Model());
 				break;
 			case 2:

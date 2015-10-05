@@ -66,7 +66,7 @@ public class Data {
 
 	}
 
-	public static boolean commitAllData() {
+	public static boolean persistAllData() {
 		try {
 			FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);

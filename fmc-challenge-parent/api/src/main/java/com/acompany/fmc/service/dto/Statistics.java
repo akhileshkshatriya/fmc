@@ -71,5 +71,5 @@ public class Statistics {
 	public void setVillain(Character villain) {
 		this.villain = villain;
 	}
-
+	
 }

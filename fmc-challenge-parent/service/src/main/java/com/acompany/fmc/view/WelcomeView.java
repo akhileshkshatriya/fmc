@@ -13,19 +13,23 @@ public class WelcomeView {
 
 	private static final int THERAD_SLEEP_MS = 1500;
 	private static final String WELCOME_MESSAGE = "F M C";
-	
+
 	@ViewMapping(name = "welcome")
 	public void displayHomeMessageWithOptions(Model model) {
 		System.out.println();
 		System.out.println();
-		
+
 		try {
 			ViewUtil.displayASCII(WELCOME_MESSAGE, 15);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println();
-		System.out.println("Welcome To Find My Car Game");
+		System.out.println("Welcome To Find My Car Gamesaasas");
+		System.out.println();
+
+		displayStoryLineWithEnterOption();
+
 		System.out.println();
 		displayHomeOptions();
 	}
@@ -39,9 +43,9 @@ public class WelcomeView {
 		System.out.println();
 		Scanner scanner = new Scanner(System.in);
 		try {
-			
-			int userInput = scanner.nextInt(); 
-			
+
+			int userInput = scanner.nextInt();
+
 			switch (userInput) {
 
 			case 1:
@@ -49,7 +53,7 @@ public class WelcomeView {
 				RequestSubmitter.submitRequest("initializeNewGame", new Model());
 				break;
 			case 2:
-				//Runtime.getRuntime().exec("clear");
+				// Runtime.getRuntime().exec("clear");
 				displayStoryLine();
 				break;
 			case 3:
@@ -65,33 +69,36 @@ public class WelcomeView {
 			ViewUtil.displayErrorMessage("Sorry Worng Input, Please try again...");
 			System.out.println();
 			displayHomeOptions();
-		}finally {
+		} finally {
 			scanner.reset();
 		}
 	}
 
-	public void displayStoryLine() {
+	public void displayStoryLineWithEnterOption() {
 		Scanner scanner = new Scanner(System.in);
+
+		displayStoryLine();
+		System.out.println("Press Enter to Continue ........");
+		scanner.nextLine();
+		displayHomeOptions();
+
+	}
+
+	private void displayStoryLine() {
+		System.out.println("Me: I am getting late for an important presentation.I have to rush to office.");
 		try {
-			
-			System.out.println("You are a hardworking person with ........");
+			System.out.println("I picked the car keys and ran towards it");
 			Thread.sleep(THERAD_SLEEP_MS);
-			System.out.println("You bought your favorite car with your hard earned money");
+			System.out.println("Ohh !! I cant believe it, My car is not there");
 			Thread.sleep(THERAD_SLEEP_MS);
-			System.out.println("Now, Someone Stole your car");
+			System.out.println("Seems someone has stolen my car");
 			Thread.sleep(THERAD_SLEEP_MS);
-			System.out.println("Police is not able to help you out because of crime rate in city");
+			System.out.println("Find Out what happened");
 			Thread.sleep(THERAD_SLEEP_MS);
-			System.out.println("Now You need to enter in the world of FMC(Find My Car...and get your car back");
 			System.out.println();
-			System.out.println("Press Enter to Continue ........");
-			scanner.nextLine();
-			
-			displayHomeOptions();
-		} catch (Exception e) {
+			Thread.sleep(THERAD_SLEEP_MS);
+		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}finally {
-			scanner.reset();
 		}
 
 	}
