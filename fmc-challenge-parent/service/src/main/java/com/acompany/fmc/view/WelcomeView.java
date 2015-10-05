@@ -25,11 +25,15 @@ public class WelcomeView {
 			e.printStackTrace();
 		}
 		System.out.println();
-		System.out.println("Welcome To Find My Car Gamesaasas");
+		System.out.println("Welcome To Find My Car Game");
 		System.out.println();
 
-		displayStoryLineWithEnterOption();
-
+		if(model.getAttribute("resumeoption")!=null){
+			displayHomeOptionsWithResume();
+		}else{
+			displayStoryLineWithEnterOption();	
+		}
+		
 		System.out.println();
 		displayHomeOptions();
 	}
@@ -53,10 +57,51 @@ public class WelcomeView {
 				RequestSubmitter.submitRequest("initializeNewGame", new Model());
 				break;
 			case 2:
-				// Runtime.getRuntime().exec("clear");
 				displayStoryLine();
 				break;
 			case 3:
+				System.exit(0);
+				break;
+			default:
+				ViewUtil.displayErrorMessage("You Naughty Player, Please choose from the option provided");
+				displayHomeOptions();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println();
+			ViewUtil.displayErrorMessage("Sorry Worng Input, Please try again...");
+			System.out.println();
+			displayHomeOptions();
+		} finally {
+			scanner.reset();
+		}
+	}
+	private void displayHomeOptionsWithResume() {
+
+		System.out.print("[1] New Game \n");
+		System.out.print("[2] Game Story Line \n");
+		System.out.print("[3] Resume \n");
+		System.out.print("[3] Exit");
+		System.out.println();
+		System.out.println();
+		Scanner scanner = new Scanner(System.in);
+		try {
+
+			int userInput = scanner.nextInt();
+
+			switch (userInput) {
+
+			case 1:
+				System.out.println();
+				RequestSubmitter.submitRequest("initializeNewGame", new Model());
+				break;
+			case 2:
+				displayStoryLine();
+				break;
+			case 3:
+				RequestSubmitter.submitRequest("resumeGame", new Model());
+				break;
+			case 4:
 				System.exit(0);
 				break;
 			default:

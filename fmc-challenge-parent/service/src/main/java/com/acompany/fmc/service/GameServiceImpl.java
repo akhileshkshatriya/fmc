@@ -2,9 +2,11 @@ package com.acompany.fmc.service;
 
 import com.acompany.fmc.data.Data;
 import com.acompany.fmc.framework.FMCProperties;
+import com.acompany.fmc.framework.annotation.Service;
 import com.acompany.fmc.service.dto.Character;
 import com.acompany.fmc.service.dto.Statistics;
 
+@Service
 public class GameServiceImpl implements GameService {
 
 	public static final String HERO_KEY = FMCProperties.getPropValue("hero.primary.key");

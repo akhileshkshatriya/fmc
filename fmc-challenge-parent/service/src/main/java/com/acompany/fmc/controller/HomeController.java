@@ -10,11 +10,15 @@ import com.acompany.fmc.service.CharacterService;
 public class HomeController {
 
 	@Autowired
-	private CharacterService heroService;
+	private CharacterService characterService;
 
 	@RequetMapping(name = "home")
 	public Model execute(Model model) {
 		Model returnModel = new Model();
+		
+		if(characterService.getVillain()!=null){
+			returnModel.addAttribute("resumeoption", "true");
+		}
 		returnModel.addAttribute("view", "welcome");
 		return returnModel;
 	}

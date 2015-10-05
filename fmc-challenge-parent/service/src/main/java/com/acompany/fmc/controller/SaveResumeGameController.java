@@ -36,6 +36,7 @@ public class SaveResumeGameController {
 	public Model resumeGame(Model model) {
 		Statistics statistics = gameService.resumeGame();
 		model.addAttribute("statistics", statistics);
+		
 		model.addAttribute("view", "level1.start");
 		return model;
 	}
