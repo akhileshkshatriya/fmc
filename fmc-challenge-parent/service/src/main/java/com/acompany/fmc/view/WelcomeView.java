@@ -29,9 +29,9 @@ public class WelcomeView {
 		System.out.println();
 
 		if(model.getAttribute("resumeoption")!=null){
-			displayHomeOptionsWithResume();
+			displayStoryLine(true);
 		}else{
-			displayStoryLineWithEnterOption();	
+			displayStoryLine(false);	
 		}
 		
 		System.out.println();
@@ -40,7 +40,7 @@ public class WelcomeView {
 
 	private void displayHomeOptions() {
 
-		System.out.print("[1] New Game \n");
+		System.out.print("[1] Find Out \n");
 		System.out.print("[2] Game Story Line \n");
 		System.out.print("[3] Exit");
 		System.out.println();
@@ -57,7 +57,7 @@ public class WelcomeView {
 				RequestSubmitter.submitRequest("initializeNewGame", new Model());
 				break;
 			case 2:
-				displayStoryLine();
+				displayStoryLine(false);
 				break;
 			case 3:
 				System.exit(0);
@@ -78,10 +78,10 @@ public class WelcomeView {
 	}
 	private void displayHomeOptionsWithResume() {
 
-		System.out.print("[1] New Game \n");
+		System.out.print("[1] Find Out \n");
 		System.out.print("[2] Game Story Line \n");
-		System.out.print("[3] Resume \n");
-		System.out.print("[3] Exit");
+		System.out.print("[3] Resume Game\n");
+		System.out.print("[4] Exit");
 		System.out.println();
 		System.out.println();
 		Scanner scanner = new Scanner(System.in);
@@ -96,7 +96,7 @@ public class WelcomeView {
 				RequestSubmitter.submitRequest("initializeNewGame", new Model());
 				break;
 			case 2:
-				displayStoryLine();
+				displayStoryLine(true);
 				break;
 			case 3:
 				RequestSubmitter.submitRequest("resumeGame", new Model());
@@ -119,17 +119,7 @@ public class WelcomeView {
 		}
 	}
 
-	public void displayStoryLineWithEnterOption() {
-		Scanner scanner = new Scanner(System.in);
-
-		displayStoryLine();
-		System.out.println("Press Enter to Continue ........");
-		scanner.nextLine();
-		displayHomeOptions();
-
-	}
-
-	private void displayStoryLine() {
+	private void displayStoryLine(boolean resume) {
 		System.out.println("Me: I am getting late for an important presentation.I have to rush to office.");
 		try {
 			System.out.println("I picked the car keys and ran towards it");
@@ -142,6 +132,16 @@ public class WelcomeView {
 			Thread.sleep(THERAD_SLEEP_MS);
 			System.out.println();
 			Thread.sleep(THERAD_SLEEP_MS);
+			
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Press Enter to Continue ........");
+			scanner.nextLine();
+			if(resume){
+				displayHomeOptionsWithResume();
+			}else{
+				displayHomeOptions();
+			}
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

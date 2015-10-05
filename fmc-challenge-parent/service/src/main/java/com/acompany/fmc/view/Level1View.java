@@ -25,9 +25,8 @@ public class Level1View {
 		ViewUtil.resetConsoleText();
 		
 		System.out.print("[1] Fight \n");
-		System.out.print("[2] Buy Second Hand Car \n");
-		System.out.print("[3] Save Game \n");
-		System.out.print("[4] Exit");
+		System.out.print("[2] Save Game \n");
+		System.out.print("[3] Exit");
 		System.out.println();
 		System.out.println();
 		Scanner scanner = new Scanner(System.in);
@@ -40,12 +39,9 @@ public class Level1View {
 				RequestSubmitter.submitRequest("level1.fight", new Model());
 				break;
 			case 2:
-				displaySecondHandCarSite(model);
-				break;
-			case 3:
 				RequestSubmitter.submitRequest("saveGame", new Model());
 				break;
-			case 4:
+			case 3:
 				System.exit(0);
 				break;
 			default:
@@ -59,38 +55,5 @@ public class Level1View {
 		}
 	}
 	
-	public void displaySecondHandCarSite(Model model){
-		System.out.println();
-		System.out.println("You can buy second hand cars in very good conditions from");
-		System.out.println("www.acompany.com");
-		System.out.println("Here the prices are really low");
-		System.out.println();
-		
-		System.out.print("[1] Back \n");
-		System.out.print("[2] Exit");
-		System.out.println();
-		System.out.println();
-		Scanner scanner = new Scanner(System.in);
-		
-		
-		try {
-			int userInput = scanner.nextInt();
-			switch (userInput) {
-			case 1:
-				displayLevel1Options(model);
-				
-				break;
-			case 2:
-				System.exit(0);
-				break;
-			default:
-				ViewUtil.displayErrorMessage("You Naughty Player, Please choose from the option provided");
-
-			}
-		} catch (Exception e) {
-			System.out.println();
-			ViewUtil.displayErrorMessage("Sorry Worng Input, Please try again...");
-			System.out.println();
-		}
-	}
+	
 }
