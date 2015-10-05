@@ -26,4 +26,12 @@ public class GameServiceImpl implements GameService {
 		statistics.setVillain(villain);
 		return statistics;
 	}
+
+	@Override
+	public boolean isThereAnySavedGame() {
+		if (Data.selectCharacter(VILLAIN_KEY) != null) {
+			return true;
+		}
+		return false;
+	}
 }
