@@ -22,8 +22,9 @@ public class MainClass {
 		
 		try {
 			RequestSubmitter.submitRequest("home", new Model());
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());;
+			System.out.println("There is some problem, Kindly report it.");
 		}
 	}
 

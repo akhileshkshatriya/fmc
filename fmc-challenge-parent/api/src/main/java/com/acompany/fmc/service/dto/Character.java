@@ -6,6 +6,11 @@ import java.util.Map;
 
 public class Character implements Serializable {
 	
+	public static final int EXPERIENCE_INCREMENT_BY = 1;
+	public static final int INITIAL_HEALTH = 500;
+	public static final int INITIAL_DEFENCE = 20;
+	public static final int INITIAL_ROUND = 5;
+	public static final int INITIAL_ARMOUR = 50;
 	
 	public static enum GENDER{
 		MALE, FEMALE

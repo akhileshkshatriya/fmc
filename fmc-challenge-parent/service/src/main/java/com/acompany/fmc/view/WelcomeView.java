@@ -14,7 +14,7 @@ public class WelcomeView {
 	private static final int THERAD_SLEEP_MS = 1500;
 	private static final String WELCOME_MESSAGE = "F M C";
 
-	@ViewMapping(name = "welcome")
+	@ViewMapping(name = "welcome.home")
 	public void displayHomeMessageWithOptions(Model model) {
 		System.out.println();
 		System.out.println();
@@ -39,8 +39,7 @@ public class WelcomeView {
 	}
 
 	private void displayHomeOptions() {
-
-		System.out.print("[1] Find Out \n");
+		System.out.print("[1] Go to Police \n");
 		System.out.print("[2] Game Story Line \n");
 		System.out.print("[3] Exit");
 		System.out.println();
@@ -54,7 +53,7 @@ public class WelcomeView {
 
 			case 1:
 				System.out.println();
-				RequestSubmitter.submitRequest("initializeNewGame", new Model());
+				RequestSubmitter.submitRequest("goToPolice", new Model());
 				break;
 			case 2:
 				displayStoryLine(false);
@@ -78,7 +77,7 @@ public class WelcomeView {
 	}
 	private void displayHomeOptionsWithResume() {
 
-		System.out.print("[1] Find Out \n");
+		System.out.print("[1] Go to Police \n");
 		System.out.print("[2] Game Story Line \n");
 		System.out.print("[3] Resume Game\n");
 		System.out.print("[4] Exit");
@@ -93,7 +92,7 @@ public class WelcomeView {
 
 			case 1:
 				System.out.println();
-				RequestSubmitter.submitRequest("initializeNewGame", new Model());
+				RequestSubmitter.submitRequest("goToPolice", new Model());
 				break;
 			case 2:
 				displayStoryLine(true);
@@ -122,11 +121,11 @@ public class WelcomeView {
 	private void displayStoryLine(boolean resume) {
 		System.out.println("Me: I am getting late for an important presentation.I have to rush to office.");
 		try {
-			System.out.println("I picked the car keys and ran towards it");
+			System.out.println("I picked the car keys and ran towards the parking...");
 			Thread.sleep(THERAD_SLEEP_MS);
 			System.out.println("Ohh !! I cant believe it, My car is not there");
 			Thread.sleep(THERAD_SLEEP_MS);
-			System.out.println("Seems someone has stolen my car");
+			System.out.println("Seems someone has stolen my red beuty");
 			Thread.sleep(THERAD_SLEEP_MS);
 			System.out.println("Find Out what happened");
 			Thread.sleep(THERAD_SLEEP_MS);

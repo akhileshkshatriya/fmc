@@ -13,8 +13,6 @@ import com.acompany.fmc.framework.model.Model;
 @Bean
 public class Dispatcher {
 
-	private static final String VIEW_NAME = "view";
-	
 	@Autowired
 	private HandlerMapping handler;
 	

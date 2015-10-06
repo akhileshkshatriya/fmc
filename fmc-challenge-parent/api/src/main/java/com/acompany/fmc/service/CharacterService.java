@@ -5,15 +5,16 @@ import com.acompany.fmc.service.dto.Character;
 public interface CharacterService {
 	
 	Character getHero();
-	boolean createHero(Character hero);
+	String createHero(Character hero);
 	Character reInitializeHero();
 	Character updateHeroHealth(int health);
 	
 	
-	boolean createVillain();
+	String createVillain();
 	Character getVillain();
 	Character updateVillainHealth(int health);
 	boolean increaseHeroExperience();
+	boolean isHeroCreated();
 	
 	
 }

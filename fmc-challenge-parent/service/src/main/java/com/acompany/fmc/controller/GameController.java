@@ -6,7 +6,6 @@ import com.acompany.fmc.framework.annotation.RequetMapping;
 import com.acompany.fmc.framework.model.Model;
 import com.acompany.fmc.service.CharacterService;
 import com.acompany.fmc.service.GameService;
-import com.acompany.fmc.service.dto.Character;
 
 @Controller
 public class GameController {
@@ -24,22 +23,18 @@ public class GameController {
 		if (gameService.isThereAnySavedGame()) {
 			model.addAttribute("resumeoption", "true");
 		}
-
-		model.redirectTo("welcome");
+		model.redirectTo("welcome.home");
 		return model;
 	}
 
-	@RequetMapping(name = "initializeNewGame")
-	public Model initializeNewGame(Model model) {
+	@RequetMapping(name = "goToPolice")
+	public Model goToPolice(Model model) {
 		model = new Model();
-		Character hero = characterService.getHero();
-		if (hero == null) {
-			model.redirectTo("create.character");
-		} else {
-			model.redirectTo("start.options");
-			return model;
-		}
+		model.redirectTo("goto.police.options");
 
+		if (!characterService.isHeroCreated()) {
+			model.redirectTo("create.character");
+		}
 		return model;
 	}
 }

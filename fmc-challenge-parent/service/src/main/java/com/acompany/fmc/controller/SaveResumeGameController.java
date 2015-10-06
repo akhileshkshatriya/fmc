@@ -28,7 +28,7 @@ public class SaveResumeGameController {
 		statistics.setHero(hero);
 		statistics.setVillain(villain);
 		model.addAttribute("statistics", statistics);
-		model.redirectTo("level1.start");
+		model.redirectTo("save.success");
 		return model;
 	}
 
@@ -36,8 +36,7 @@ public class SaveResumeGameController {
 	public Model resumeGame(Model model) {
 		Statistics statistics = gameService.resumeGame();
 		model.addAttribute("statistics", statistics);
-		
-		model.redirectTo("level1.start");
+		model.redirectTo("fight.level1");
 		return model;
 	}
 

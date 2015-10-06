@@ -11,14 +11,8 @@ public class CharacterServiceImpl implements CharacterService {
 
 	public static final String HERO_KEY = FMCProperties.getPropValue("hero.primary.key");
 	public static final String VILLAIN_KEY = FMCProperties.getPropValue("villain.primary.key");
-	
-	private static final String VILLAIN_NAME = "TheVillain";
 
-	private static final int EXPERIENCE_INCREMENT_BY = 1;
-	private static final int INITIAL_HEALTH = 500;
-	private static final int INITIAL_DEFENCE = 20;
-	private static final int INITIAL_ROUND = 5;
-	private static final int INITIAL_ARMOUR = 50;
+	private static final String VILLAIN_NAME = "TheVillain";
 
 	@Override
 	public Character getHero() {
@@ -26,14 +20,22 @@ public class CharacterServiceImpl implements CharacterService {
 	}
 
 	@Override
+	public boolean isHeroCreated() {
+		if (Data.selectCharacter(HERO_KEY) != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public Character reInitializeHero() {
 		Character hero = Data.selectCharacter(HERO_KEY);
-		hero.setHealth(INITIAL_HEALTH);
-		hero.setArmour(INITIAL_ARMOUR);
-		hero.setRound(INITIAL_ROUND);
-		hero.setDefence(INITIAL_DEFENCE);
-		boolean retVal = Data.saveCharacter(hero, HERO_KEY);
-		if (retVal) {
+		hero.setHealth(Character.INITIAL_HEALTH);
+		hero.setArmour(Character.INITIAL_ARMOUR);
+		hero.setRound(Character.INITIAL_ROUND);
+		hero.setDefence(Character.INITIAL_DEFENCE);
+		String id = Data.saveCharacter(hero, HERO_KEY);
+		if (id != null) {
 			return hero;
 		}
 		return null;
@@ -53,18 +55,18 @@ public class CharacterServiceImpl implements CharacterService {
 	}
 
 	@Override
-	public boolean createHero(Character hero) {
-		if (Data.saveCharacter(hero, HERO_KEY)) {
+	public String createHero(Character hero) {
+		String id = Data.saveCharacter(hero, HERO_KEY);
+		if (id != null) {
 			Data.persistAllData();
-			return true;
 		}
-		return false;
+		return id;
 	}
-	
+
 	@Override
 	public boolean increaseHeroExperience() {
 		Character hero = Data.selectCharacter(HERO_KEY);
-		hero.setExperience(hero.getExperience()+EXPERIENCE_INCREMENT_BY);
+		hero.setExperience(hero.getExperience() + Character.EXPERIENCE_INCREMENT_BY);
 		Data.saveCharacter(hero, HERO_KEY);
 		return Data.persistAllData();
 	}
@@ -75,16 +77,16 @@ public class CharacterServiceImpl implements CharacterService {
 	}
 
 	@Override
-	public boolean createVillain() {
-
+	public String createVillain() {
 		Character villain = new Character();
 		villain.setName(VILLAIN_NAME);
 		villain.setGender(GENDER.MALE);
-		villain.setHealth(INITIAL_HEALTH);
-		villain.setArmour(INITIAL_ARMOUR);
-		villain.setRound(INITIAL_ROUND);
-		villain.setDefence(INITIAL_DEFENCE);
-		return Data.saveCharacter(villain, VILLAIN_KEY);
+		villain.setHealth(Character.INITIAL_HEALTH);
+		villain.setArmour(Character.INITIAL_ARMOUR);
+		villain.setRound(Character.INITIAL_ROUND);
+		villain.setDefence(Character.INITIAL_DEFENCE);
+		Data.saveCharacter(villain, VILLAIN_KEY);
+		return VILLAIN_NAME;
 	}
 
 }

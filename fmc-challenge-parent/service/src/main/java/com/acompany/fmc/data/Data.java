@@ -31,12 +31,12 @@ public class Data {
 		return null;
 	}
 
-	public static boolean saveCharacter(Character character, String primaryKey) {
+	public static String saveCharacter(Character character, String primaryKey) {
 		if (character != null) {
 			data.put(primaryKey, character);
-			return true;
+			return character.getName();
 		}
-		return false;
+		return null;
 	}
 
 	public static Character updateCharacterHealth(String primaryKey, int health) {

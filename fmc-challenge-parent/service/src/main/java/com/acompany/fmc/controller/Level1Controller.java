@@ -16,8 +16,8 @@ public class Level1Controller {
 	@Autowired
 	private CharacterService characterService;
 
-	@RequetMapping(name = "initializeLavel1")
-	public Model initializeLavel1(Model model) {
+	@RequetMapping(name = "initializeLevel1")
+	public Model initializeLevel1(Model model) {
 		model = new Model();
 
 		characterService.createVillain();
@@ -29,11 +29,11 @@ public class Level1Controller {
 		statistics.setVillain(villain);
 		model.addAttribute("statistics", statistics);
 
-		model.redirectTo("level1.start");
+		model.redirectTo("start.level1");
 		return model;
 	}
 
-	@RequetMapping(name = "level1.fight")
+	@RequetMapping(name = "fightLevel1")
 	public Model fight(Model model) {
 
 		model = new Model();
@@ -47,32 +47,36 @@ public class Level1Controller {
 		int villainHealth = villain.getHealth() - villainDamage;
 
 		if (heroHealth > 0 && villainHealth > 0) {
-			hero = characterService.updateHeroHealth(heroHealth);
-			villain = characterService.updateVillainHealth(villainHealth);
-			model.redirectTo("level1.start");
+			model.redirectTo("fight.level1");
 		} else {
 			characterService.increaseHeroExperience();
-			if (heroHealth <= 0) {
-				if (villainHealth <= 0) {
-					if (Math.signum((heroHealth) - (villainDamage)) > 0) {
-						model.redirectTo("hero.won");
-					} else {
-						model.redirectTo("hero.lose");
-					}
-				} else {
-					model.redirectTo("hero.lose");
-				}
-			} else {
-				model.redirectTo("hero.won");
-			}
+			model.redirectTo(getWhoWon(heroHealth, villainHealth));
 		}
 
+		hero = characterService.updateHeroHealth(heroHealth);
+		villain = characterService.updateVillainHealth(villainHealth);
 		Statistics statistics = new Statistics();
 		statistics.setHero(hero);
 		statistics.setVillain(villain);
 		model.addAttribute("statistics", statistics);
 
 		return model;
+	}
+	
+	protected String getWhoWon(int heroHealth, int villainHealth){
+		if (heroHealth <= 0) {
+			if (villainHealth <= 0) {
+				if (Math.signum((heroHealth) - (villainHealth)) > 0) {
+					return "hero.won";
+				} else {
+					return "hero.lose";
+				}
+			} else {
+				return "hero.lose";
+			}
+		} else {
+			return "hero.won";
+		}
 	}
 
 	private int random(int intMax) {
