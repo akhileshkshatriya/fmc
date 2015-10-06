@@ -17,6 +17,8 @@ import com.acompany.fmc.framework.annotation.Bean;
 import com.acompany.fmc.framework.annotation.Controller;
 import com.acompany.fmc.framework.annotation.Service;
 import com.acompany.fmc.framework.annotation.View;
+import com.acompany.fmc.framework.frontcontroller.Dispatcher;
+import com.acompany.fmc.framework.frontcontroller.FrontController;
 import com.acompany.fmc.framework.mapping.HandlerMapping;
 import com.acompany.fmc.framework.mapping.ViewResolver;
 
@@ -52,6 +54,10 @@ public class ApplicationContext {
 		Map<String, Method> requestMethodMap = getRequestMethodMapFrom(allAnnotatedTypesMap);
 		Map<String, Method> viewMethodMap = getViewMethodMapFrom(allAnnotatedTypesMap);
 		Map<Class<?>, Object> instanceMapWithoutDependencies = instantiateAllAnnotatedTypes(allAnnotatedTypesMap);
+		instanceMapWithoutDependencies.put(HandlerMapping.class, HandlerMapping.class.newInstance());
+		instanceMapWithoutDependencies.put(ViewResolver.class, ViewResolver.class.newInstance());
+		instanceMapWithoutDependencies.put(Dispatcher.class, Dispatcher.class.newInstance());
+		instanceMapWithoutDependencies.put(FrontController.class, FrontController.class.newInstance());
 		instanceMapWithDependencies = injectDependencies(instanceMapWithoutDependencies);
 		injectRequestMethodMapping(requestMethodMap);
 		injectViewMethodMapping(viewMethodMap);

@@ -5,12 +5,11 @@ import java.lang.reflect.Method;
 
 import com.acompany.fmc.framework.ApplicationContext;
 import com.acompany.fmc.framework.annotation.Autowired;
-import com.acompany.fmc.framework.annotation.Bean;
 import com.acompany.fmc.framework.mapping.HandlerMapping;
 import com.acompany.fmc.framework.mapping.ViewResolver;
 import com.acompany.fmc.framework.model.Model;
 
-@Bean
+
 public class Dispatcher {
 
 	@Autowired
@@ -24,7 +23,8 @@ public class Dispatcher {
 		ApplicationContext context = ApplicationContext.getApplicationContext();
 
 		Method controllerMethod = handler.get(request);
-		Object targetController = context.getBean(controllerMethod.getDeclaringClass());
+		Class<?> claz = controllerMethod.getDeclaringClass();
+		Object targetController = context.getBean(claz);
 		Model retModel = (Model) controllerMethod.invoke(targetController, model);
 
 		Method viewMethod = resolver.get((String) retModel.getRedirectTo());
