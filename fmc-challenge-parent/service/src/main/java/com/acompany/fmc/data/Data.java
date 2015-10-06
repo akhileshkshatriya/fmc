@@ -11,8 +11,10 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.acompany.fmc.framework.annotation.Bean;
 import com.acompany.fmc.service.dto.Character;
 
+@Bean
 public class Data {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(Data.class);
@@ -24,14 +26,14 @@ public class Data {
 		loadData();
 	}
 
-	public static Character selectCharacter(String primaryKey) {
+	public Character selectCharacter(String primaryKey) {
 		if (primaryKey != null) {
 			return (Character) data.get(primaryKey);
 		}
 		return null;
 	}
 
-	public static String saveCharacter(Character character, String primaryKey) {
+	public String saveCharacter(Character character, String primaryKey) {
 		if (character != null) {
 			data.put(primaryKey, character);
 			return character.getName();
@@ -39,7 +41,7 @@ public class Data {
 		return null;
 	}
 
-	public static Character updateCharacterHealth(String primaryKey, int health) {
+	public Character updateCharacterHealth(String primaryKey, int health) {
 		Character character = data.get(primaryKey);
 		if (character != null) {
 			character.setHealth(health);
@@ -66,7 +68,7 @@ public class Data {
 
 	}
 
-	public static boolean persistAllData() {
+	public boolean persistAllData() {
 		try {
 			FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
