@@ -5,9 +5,10 @@ import java.util.regex.Pattern;
 
 import com.acompany.fmc.framework.annotation.View;
 import com.acompany.fmc.framework.annotation.ViewMapping;
-import com.acompany.fmc.framework.frontcontroller.RequestSubmitter;
 import com.acompany.fmc.framework.model.Model;
 import com.acompany.fmc.service.dto.Character;
+import com.acompany.fmc.view.util.RequestSubmitter;
+import com.acompany.fmc.view.util.ViewUtil;
 
 @View
 public class CharacterView {

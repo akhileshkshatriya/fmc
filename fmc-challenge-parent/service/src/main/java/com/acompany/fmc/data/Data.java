@@ -1,29 +1,21 @@
 package com.acompany.fmc.data;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.acompany.fmc.framework.FMCProperties;
 import com.acompany.fmc.framework.annotation.Bean;
 import com.acompany.fmc.service.dto.Character;
 
 @Bean
 public class Data {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(Data.class);
-	private static final String DATA_FILE_NAME = "fmcdata.ser";
-
-	private static Map<String, Character> data = new HashMap<>();
-
-	static {
-		loadData();
+	private static final String DATA_FILE_NAME = FMCProperties.getPropValue("data.file.name");
+	private Map<String, Character> data = new HashMap<>();
+	private SerializationUtils serializationUtils = new SerializationUtils();
+	
+	public Data() {
+		data = serializationUtils.deserialize(DATA_FILE_NAME);
 	}
 
 	public Character selectCharacter(String primaryKey) {
@@ -49,37 +41,8 @@ public class Data {
 		return character;
 	}
 
-	private static void loadData() {
-
-		try {
-			FileInputStream fis = new FileInputStream(DATA_FILE_NAME);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			data = (HashMap<String, Character>) ois.readObject();
-			ois.close();
-			fis.close();
-		} catch (IOException e) {
-			LOGGER.error(e.getMessage());
-		} catch (ClassNotFoundException e) {
-			LOGGER.info(e.getMessage());
-			LOGGER.info("No user exist !!, Player Will be prompted to create one");
-		} catch (Exception e) {
-			LOGGER.info(e.getMessage());
-		}
-
-	}
-
 	public boolean persistAllData() {
-		try {
-			FileOutputStream fos = new FileOutputStream(DATA_FILE_NAME);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(data);
-			oos.close();
-			fos.close();
-
-		} catch (IOException ioe) {
-			LOGGER.error(ioe.getMessage());
-		}
-		return false;
+		return serializationUtils.serialize(data, DATA_FILE_NAME);
 	}
 
 }

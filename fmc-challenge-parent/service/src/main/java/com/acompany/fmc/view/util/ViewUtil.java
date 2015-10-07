@@ -1,4 +1,4 @@
-package com.acompany.fmc.view;
+package com.acompany.fmc.view.util;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,9 +18,7 @@ public class ViewUtil {
 	private static final String ANSI_PURPLE = "\u001B[35m ";
 	private static final String ANSI_CYAN = "\u001B[36m ";
 	private static final String ANSI_WHITE = "\u001B[37m ";
-	
-	
-	
+
 	public static void displayASCII(String title, int size) throws IOException {
 
 		int width = 100;
@@ -37,31 +35,27 @@ public class ViewUtil {
 		for (int y = 0; y < height; y++) {
 			StringBuilder sb = new StringBuilder();
 			for (int x = 0; x < width; x++) {
-
 				sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
-
 			}
-
 			if (sb.toString().trim().isEmpty()) {
 				continue;
 			}
-
 			System.out.println(sb);
 		}
 	}
-	
-	public static void displayErrorMessage(String message){
+
+	public static void displayErrorMessage(String message) {
 		System.out.println();
-		
-		System.out.println(ANSI_RED+message+ANSI_RESET);
+
+		System.out.println(ANSI_RED + message + ANSI_RESET);
 		System.out.println();
 	}
-	
-	public static void displayConsoleTextIn(String ansicode){
+
+	public static void displayConsoleTextIn(String ansicode) {
 		System.out.println(ansicode);
 	}
-	
-	public static void resetConsoleText(){
+
+	public static void resetConsoleText() {
 		System.out.println(ANSI_RESET);
 	}
 }

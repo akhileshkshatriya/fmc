@@ -22,7 +22,7 @@ public class Level1ControllerTest {
 
 	
 	private static int GOOD_HEALTH = 500;
-	private static int BAD_HEALTH = 1;
+	private static int BAD_HEALTH = -500;
 	
 	@InjectMocks
 	private Level1Controller controller = new Level1Controller();
