@@ -63,6 +63,7 @@ public class ViewUtil {
 		System.out.println("");
 		System.out.println("Please visit www.acompany.com for more updates");
 		System.out.println("Bye....See you soon");
+		System.out.println("");
 		System.exit(0);
 	}
 }
