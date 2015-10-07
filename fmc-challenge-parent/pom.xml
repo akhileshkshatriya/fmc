@@ -80,6 +80,10 @@
 					<instrumentation>
 						<excludes>
 							<exclude>com/acompany/fmc/service/dto/**/*.class</exclude>
+							<exclude>com/acompany/fmc/framework/model/**/*.class</exclude>
+							<exclude>com/acompany/fmc/view/**/*.class</exclude>
+							<exclude>com/acompany/fmc/service/*.class</exclude>
+							<exclude>com/acompany/fmc/*.class</exclude>
 						</excludes>
 					</instrumentation>
 				</configuration>

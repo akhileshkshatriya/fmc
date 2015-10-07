@@ -17,6 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import com.acompany.fmc.data.Data;
 import com.acompany.fmc.service.dto.Character;
 import com.acompany.fmc.service.dto.Statistics;
+import com.acompany.fmc.service.impl.GameServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameServiceImplTest {

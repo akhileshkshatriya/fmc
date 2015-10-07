@@ -15,7 +15,6 @@ public class MainClass {
 	private static Logger LOGGER = LoggerFactory.getLogger(MainClass.class);
 	
 	public static void main(String[] args) throws URISyntaxException {
-		LOGGER.info("Put something in log");
 		ApplicationContext context  = ApplicationContext.getApplicationContext();
 		FrontController frontController = (FrontController)context.getBean(FrontController.class);
 		new RequestSubmitter(frontController);

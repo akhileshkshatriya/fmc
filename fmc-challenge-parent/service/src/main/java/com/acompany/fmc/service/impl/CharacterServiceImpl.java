@@ -1,9 +1,10 @@
-package com.acompany.fmc.service;
+package com.acompany.fmc.service.impl;
 
 import com.acompany.fmc.data.Data;
 import com.acompany.fmc.framework.FMCProperties;
 import com.acompany.fmc.framework.annotation.Autowired;
 import com.acompany.fmc.framework.annotation.Service;
+import com.acompany.fmc.service.CharacterService;
 import com.acompany.fmc.service.dto.Character;
 import com.acompany.fmc.service.dto.Character.GENDER;
 
