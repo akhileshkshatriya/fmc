@@ -23,8 +23,8 @@ public class Level1View {
 	
 	@ViewMapping(name = "save.success")
 	public void displaySuccessSaveMessage(Model model) {
-		System.out.println("Your Game has been saved successfully, Bye.... See you soon !!");
-		System.exit(0);
+		System.out.println("Your Game has been saved successfully. You can resume your game from main menu");
+		ViewUtil.exit();
 	}
 
 	@ViewMapping(name = "fight.level1")
@@ -53,12 +53,14 @@ public class Level1View {
 				break;
 			default:
 				ViewUtil.displayErrorMessage("You Naughty Player, Please choose from the option provided");
+				displayStatisticsWithFightOption(model);
 
 			}
 		} catch (Exception e) {
 			System.out.println();
 			ViewUtil.displayErrorMessage("Sorry Worng Input, Please try again...");
 			System.out.println();
+			displayStatisticsWithFightOption(model);
 		}
 	}
 	
@@ -76,8 +78,7 @@ public class Level1View {
 				RequestSubmitter.submitRequest("saveGame", new Model());
 				break;
 			case 2:
-				System.out.println("Bye.... See you soon");
-				System.exit(0);
+				ViewUtil.exit();
 				break;
 			default:
 				ViewUtil.displayErrorMessage("You Naughty Player, Please choose from the option provided");

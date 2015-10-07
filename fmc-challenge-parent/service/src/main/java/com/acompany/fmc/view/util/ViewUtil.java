@@ -58,4 +58,11 @@ public class ViewUtil {
 	public static void resetConsoleText() {
 		System.out.println(ANSI_RESET);
 	}
+	
+	public static void exit(){
+		System.out.println("");
+		System.out.println("Please visit www.acompany.com for more updates");
+		System.out.println("Bye....See you soon");
+		System.exit(0);
+	}
 }

@@ -27,7 +27,7 @@ public class DataTest {
 	
 	
 	@InjectMocks
-	private Data database = new Data();
+	private Data database;
 	
 	@Mock
 	private Map<String, Character> data;

@@ -1,6 +1,7 @@
 package com.acompany.fmc.data;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,8 +27,8 @@ public class SerializationUtils {
 			oos.close();
 			fos.close();
 			return true;
-		} catch (IOException ioe) {
-			LOGGER.error(ioe.getMessage());
+		} catch (IOException e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return false;
 	}
@@ -42,13 +43,14 @@ public class SerializationUtils {
 			data = (HashMap<String, Character>) ois.readObject();
 			ois.close();
 			fis.close();
-		} catch (IOException e) {
-			LOGGER.error(e.getMessage());
-		} catch (ClassNotFoundException e) {
-			LOGGER.info(e.getMessage());
+		} catch (FileNotFoundException e) {
 			LOGGER.info("No user exist !!, Player Will be prompted to create one");
+		} catch (IOException e) {
+			LOGGER.error(e.getMessage(), e);
+		} catch (ClassNotFoundException e) {
+			LOGGER.error(e.getMessage(), e);
 		} catch (Exception e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.error(e.getMessage(), e);
 		}
 
 		return data;

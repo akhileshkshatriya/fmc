@@ -19,7 +19,6 @@ public class FinishView {
 		ViewUtil.resetConsoleText();
 		System.out.println("Yipeeeee... I WON !!");
 		System.out.println("Yipeeeee... I FOUND MY CAR");
-		System.out.println("I taught a lesson to TheVillain");
 		System.exit(0);
 	}
 
