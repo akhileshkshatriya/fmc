@@ -1,10 +1,6 @@
 package com.acompany.fmc.view.util;
 
-import static org.mockito.Mockito.when;
-
 import java.lang.reflect.InvocationTargetException;
-
-import static org.mockito.Mockito.doNothing;
 
 import org.junit.Before;
 import org.junit.Test;
