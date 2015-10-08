@@ -2,9 +2,8 @@ package com.acompany.fmc.framework.frontcontroller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.acompany.fmc.framework.ApplicationContext;
 import com.acompany.fmc.framework.annotation.Autowired;
@@ -21,7 +20,7 @@ public class Dispatcher {
 	@Autowired
 	private ViewResolver resolver;
 
-	static Logger LOGGER = LoggerFactory.getLogger(Dispatcher.class);
+	private static final Logger LOGGER = Logger.getLogger("fmcLogger");
 
 	public void dispatch(String request, Model model) {
 
@@ -39,15 +38,15 @@ public class Dispatcher {
 			viewMethod.invoke(targetView, retModel);
 
 		} catch (IllegalAccessException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 			FMCFrameworkException fmcException = new FMCFrameworkException("Invalid configuration", e);
 			throw fmcException;
 		} catch (IllegalArgumentException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 			FMCFrameworkException fmcException = new FMCFrameworkException("Invalid Input", e);
 			throw fmcException;
 		} catch (InvocationTargetException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 			FMCFrameworkException fmcException = new FMCFrameworkException("Improper Request and View Mapping", e);
 			throw fmcException;
 		}

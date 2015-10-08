@@ -8,15 +8,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.acompany.fmc.service.dto.Character;
 
 public class SerializationUtils {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(SerializationUtils.class);
+	private static final Logger LOGGER = Logger.getLogger("fmcLogger");
 
 	public boolean serialize(Map<String, Character> data, String absolutePath) {
 
@@ -28,7 +27,7 @@ public class SerializationUtils {
 			fos.close();
 			return true;
 		} catch (IOException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.log(Level.SEVERE, e.getMessage(), e);
 		}
 		return false;
 	}
@@ -46,11 +45,11 @@ public class SerializationUtils {
 		} catch (FileNotFoundException e) {
 			LOGGER.info("No user exist !!, Player Will be prompted to create one");
 		} catch (IOException e) {
-			LOGGER.info(e.getMessage(), e);
+			LOGGER.info(e.getMessage());
 		} catch (ClassNotFoundException e) {
-			LOGGER.info(e.getMessage(), e);
+			LOGGER.info(e.getMessage());
 		} catch (Exception e) {
-			LOGGER.info(e.getMessage(), e);
+			LOGGER.info(e.getMessage());
 		}
 
 		return data;

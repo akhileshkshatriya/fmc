@@ -14,9 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Logger;
 
 import com.acompany.fmc.framework.annotation.RequetMapping;
 import com.acompany.fmc.framework.annotation.ViewMapping;
@@ -29,10 +27,10 @@ public class Reflections {
 	private final String DOT = ".";
 	private final int EXTENSION_STR_LENGTH = 6;
 
-	private static Logger LOGGER = LoggerFactory.getLogger(Reflections.class);
+	private static final Logger LOGGER = Logger.getLogger("fmcLogger");
 	
 	public Reflections(final String componentScan) throws IOException {
-		LOGGER.info("Inside Reflection");
+		//LOGGER.info("Inside Reflection");
 		this.COMPONENT_SCAN = componentScan;
 	}
 

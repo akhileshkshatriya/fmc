@@ -8,9 +8,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.acompany.fmc.framework.annotation.Autowired;
 import com.acompany.fmc.framework.annotation.Bean;
@@ -25,7 +24,7 @@ import com.acompany.fmc.framework.mapping.ViewResolver;
 
 public class ApplicationContext {
 
-	static Logger LOGGER = LoggerFactory.getLogger(ApplicationContext.class);
+	private static final Logger LOGGER = Logger.getLogger("fmcLogger");
 	private static ApplicationContext context;
 	private static final String COMPONENT_SCAN = FMCProperties.getPropValue("component.scan");
 	private Reflections reflections;
@@ -44,25 +43,25 @@ public class ApplicationContext {
 			try {
 				context = new ApplicationContext();
 			} catch (ClassNotFoundException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Class does not exist", e);
 			} catch (InstantiationException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Cannot instantiate refered classes", e);
 			} catch (IllegalAccessException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Input parameter is not correct", e);
 			} catch (NoSuchFieldException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Referenced file does not exist", e);
 			} catch (SecurityException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Security Issue", e);
 			} catch (IllegalArgumentException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Configuration Problem", e);
 			} catch (IOException e) {
-				LOGGER.error(e.getMessage(), e);
+				LOGGER.log(Level.SEVERE, e.getMessage(), e);
 				convertException("Cannot Read or Write Files", e);
 			}
 

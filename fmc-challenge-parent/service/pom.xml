@@ -30,12 +30,6 @@
 			<artifactId>fmc-challenge-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.github.stefanbirkner</groupId>
-			<artifactId>system-rules</artifactId>
-			<version>${system-rules-version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 	<build>
 		<finalName>FMCRPGChallenge</finalName>

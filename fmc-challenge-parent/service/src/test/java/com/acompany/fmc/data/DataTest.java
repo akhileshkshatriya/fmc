@@ -8,9 +8,8 @@ import static org.mockito.Mockito.when;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Rule;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -99,6 +98,7 @@ public class DataTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testPersistAllData() {
 			boolean aa = database.persistAllData();
 			System.out.println(aa);
