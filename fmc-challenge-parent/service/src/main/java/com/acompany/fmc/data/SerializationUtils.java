@@ -46,11 +46,11 @@ public class SerializationUtils {
 		} catch (FileNotFoundException e) {
 			LOGGER.info("No user exist !!, Player Will be prompted to create one");
 		} catch (IOException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.info(e.getMessage(), e);
 		} catch (ClassNotFoundException e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.info(e.getMessage(), e);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
+			LOGGER.info(e.getMessage(), e);
 		}
 
 		return data;

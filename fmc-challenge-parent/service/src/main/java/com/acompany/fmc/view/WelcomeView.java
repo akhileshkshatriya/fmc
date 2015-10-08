@@ -103,17 +103,14 @@ public class WelcomeView {
 				break;
 			default:
 				ViewUtil.displayErrorMessage("You Naughty Player, Please choose from the option provided");
-				displayHomeOptions();
+				displayHomeOptionsWithResume();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println();
 			ViewUtil.displayErrorMessage("Sorry Worng Input, Please try again...");
 			System.out.println();
-			displayHomeOptions();
-		} finally {
-			scanner.reset();
-		}
+			displayHomeOptionsWithResume();
+		} 
 	}
 
 	private void displayStoryLine(boolean resume) {
